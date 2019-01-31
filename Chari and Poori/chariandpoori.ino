@@ -13,13 +13,12 @@
 //      CS   - Pin 4
 //
 
-
 #include <Adafruit_GFX.h>
 #include <LCD5110_Graph.h>
 #include <avr/pgmspace.h>
 
 
-LCD5110 lcd(7,6,5,3,4);
+LCD5110 lcd(7,6,5,9,4);
 
 const uint8_t chariWidth    = 14;
 const uint8_t chariHeight   = 20;
@@ -31,11 +30,11 @@ char chariYpos = 10;
 char pooriXpos = 0;
 char pooriYpos = 10;
 
-const uint8_t fwdBtn = 8;
-const uint8_t revBtn = 9;
+const uint8_t fwdBtn = 2;
+const uint8_t revBtn = 3;
 
 
-char flag = 0;
+int flag = 0;
 
 const uint8_t PROGMEM chari[] = { 
     0x00, 0x10, 0x10, 0x18, 0x78, 0x94, 0x8c, 0x78, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
@@ -66,40 +65,52 @@ const uint8_t PROGMEM gameover[] = {
 void setup()
 {
   lcd.InitLCD();
-  attachInterrupt(digitalPinToInterrupt(fwdBtn),incr_chari_fwd,FALLING);
-  
+  attachInterrupt(0,chari_fwd,RISING);
+  attachInterrupt(1,chari_rev,RISING);
 }
 
  
 void loop()
 {
-while(chariXpos+chariWidth != pooriXpos+pooriWidth)
-{ 
+
   
   lcd.clrScr();
-  lcd.drawBitmap(pooriXpos,pooriYpos,poori,14,20);
-  lcd.drawBitmap(chariXpos,chariYpos,revchari,14,20);
+  if(flag ==0)
+  {lcd.drawBitmap(chariXpos,chariYpos,revchari,14,20);
+  }
+
+  if(flag ==1)
+  {lcd.drawBitmap(chariXpos,chariYpos,chari,14,20);
+  }
+  
   lcd.update();
 
-
   
-}
-
-lcd.clrScr();
-lcd.drawBitmap(0,0,gameover,84,48);
-lcd.update();
-delay(3000);
-chariXpos = 20;
-chariYpos  = 10;
-pooriXpos = 0;
-pooriYpos = 10;
 
 
-}
+//lcd.clrScr();
+//lcd.drawBitmap(0,0,gameover,84,48);
+//lcd.update();
+//delay(3000);
+//chariXpos = 20;
+//chariYpos  = 10;
+//pooriXpos = 0;
+//pooriYpos = 10;
 
-void incr_chari_fwd() {
-
-   chariXpos-=2;
 
 }
 
+void chari_fwd() {
+
+   chariXpos+=1;
+   flag = 1;
+
+}
+
+void chari_rev()
+{
+
+  chariXpos -=1;
+  flag = 0;
+
+}
