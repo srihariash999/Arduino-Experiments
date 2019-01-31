@@ -5,3 +5,5 @@ To be able to use the Arduino sketch, I already mentioned the pin connections in
 
 If you want to simulate the same in the proteus software, open the .pdrsj file in the Proteus software( V8 or above is recommended). Then double click on the Arduino Uno, in the open dialog box, select the compiled .hex file which is generated when you compile the Arduino sketch.
 Hit run and Watch it do it's magic.
+
+The bitmap is converted into hex values at: https://sparks.gogo.co.nz/pcd8554-bmp.html
