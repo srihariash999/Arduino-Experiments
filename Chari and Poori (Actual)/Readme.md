@@ -7,6 +7,7 @@ Files details :
 
 <B>chariandpoori.DSN</B> is the PROTEUS DESIGN FILE. (Made and tested for Proteus professionl V7.7)
 
+-------------------------------------------------------------------------------------------------------------------------------------------
 
 <B> Screenshots:</B>
 
