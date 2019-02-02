@@ -7,4 +7,15 @@ chariandpoori.ino is the main ARDUINO SKETCH. (Targeted for Uno R3);
 
 chariandpoori.DSN is the PROTEUS DESIGN FILE. (Made and tested for Proteus professionl V7.7)</B>
 
-<img src="pic_trulli.jpg" alt="Italian Trulli">
+
+<B> Screenshots:</B>
+
+<img src="https://github.com/srihariash999/Arduino-Experiments/blob/master/Chari%20and%20Poori%20(Actual)/Screenshots/Screenshot%20(117).png" alt="Reverse Chari">
+
+<img src="https://github.com/srihariash999/Arduino-Experiments/blob/master/Chari%20and%20Poori%20(Actual)/Screenshots/Screenshot%20(118).png" alt="Chari and Poori">
+
+<img src="https://github.com/srihariash999/Arduino-Experiments/blob/master/Chari%20and%20Poori%20(Actual)/Screenshots/Screenshot%20(119).png" alt="Chari Eating Poori">
+
+
+<img src="https://github.com/srihariash999/Arduino-Experiments/blob/master/Chari%20and%20Poori%20(Actual)/Screenshots/Screenshot%20(120).png" alt="Game Over Screen">
+
