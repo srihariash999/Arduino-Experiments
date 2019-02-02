@@ -1,11 +1,11 @@
 
 Files details :
 
-<B> chari.bmp and poori.bmp are the BITMAP IMAGES "I" designed in MS paint by myself. (And I am so proud of this)
+<B> chari_final.bmp and poori_final.bmp and revchari_final.bmp</B> are the <B>BITMAP IMAGES<?B> that  <B>"I"</B> designed in MS paint by <B>"MYSELF"</B>. (And I am so proud of me for making them.)
 
-chariandpoori.ino is the main ARDUINO SKETCH. (Targeted for Uno R3);
+<B>ChariAndPooriUnoSketch</B> contains the <B> ChariAndPooriUnoSketch.ino</B> file which is the main ARDUINO SKETCH. (Targeted for Uno R3);
 
-chariandpoori.DSN is the PROTEUS DESIGN FILE. (Made and tested for Proteus professionl V7.7)</B>
+<B>chariandpoori.DSN</B> is the PROTEUS DESIGN FILE. (Made and tested for Proteus professionl V7.7)
 
 
 <B> Screenshots:</B>
