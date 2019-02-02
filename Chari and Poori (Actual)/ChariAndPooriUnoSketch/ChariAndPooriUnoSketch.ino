@@ -21,6 +21,8 @@
 
 LCD5110 lcd(7,6,5,9,4);
 
+// ------------------------------------------------------------- Global Variable and constants ------------------------------------------------------------------------------
+
 const uint8_t chariWidth    = 9;
 const uint8_t chariHeight   = 16;
 const uint8_t revchariWidth  = 9;
@@ -28,7 +30,7 @@ const uint8_t revchariHeight  = 16;
 const uint8_t pooriWidth    = 7;
 const uint8_t pooriHeight   = 5;
 
-char chariXpos = 0;
+char chariXpos = 80;
 char chariYpos = 10;
 char pooriXpos = 20;
 char pooriYpos = 10;
@@ -38,6 +40,11 @@ const uint8_t revBtn = 3;
 
 
 int flag = 0;
+
+
+
+// -----------------------------------------------------------------Bitmap image - character arrays ------------------------------------------------------------------------------
+
 
 const uint8_t PROGMEM chari[] = { 
      0x04, 0x04, 0x06, 0x9e, 0xe5, 0xa3, 0x1e, 0x00, 0x00, 
@@ -61,6 +68,89 @@ const uint8_t PROGMEM gameover[] = {
   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x07, 0x0f, 0x0f, 0x0f, 0x0f, 0x07, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
 };
 
+
+
+
+
+
+
+// ---------------------------------------------------------------- The setup() routine   ------------------------------------------------------------------------------
+
+
+
+
+void setup()
+{
+  lcd.InitLCD();
+  attachInterrupt(0,chari_fwd,RISING);
+  attachInterrupt(1,chari_rev,RISING);
+}
+
+
+
+
+// ---------------------------------------------------------------------- Main infinite loop -----------------------------------------------------------------------------------------------
+
+
+
+
+ 
+void loop()
+{
+
+  while(abs(chariXpos - pooriXpos-2)!= 0)
+  {
+    if(chariXpos+chariWidth <= 0 && flag == 0)
+    {
+      chariXpos = 80;
+      lcd.drawBitmap(chariXpos,chariYpos,revchari,chariWidth,chariHeight);
+      lcd.update();
+    }
+
+       else if(chariXpos+chariWidth >=93 && flag == 1)
+    {
+      chariXpos = -5;
+      lcd.drawBitmap(chariXpos,chariYpos,chari,chariWidth,chariHeight);
+      lcd.update();
+    }
+    
+    lcd.clrScr();
+   lcd.drawBitmap(pooriXpos,pooriYpos,poori,pooriWidth,pooriHeight);
+  
+  
+  if(flag ==0){
+    lcd.drawBitmap(chariXpos,chariYpos,revchari,chariWidth,chariHeight);
+              }
+
+  if(flag ==1){
+    lcd.drawBitmap(chariXpos,chariYpos,chari,chariWidth,chariHeight);
+              }
+
+ 
+  lcd.update();
+  }
+
+
+    lcd.clrScr();
+    lcd.drawBitmap(0,0,gameover,84,48);
+    lcd.update();
+    delay(3000);
+    chariXpos = 0;                                                     
+    chariYpos  = 10;
+    pooriXpos = 20;
+    pooriYpos = 10;
+
+
+}
+
+
+
+
+//---------------------------------------------------------------------------Interrupt Service Routines-----------------------------------------------------------------------------
+
+
+
+
 void chari_fwd() {
 
    chariXpos+=1;
@@ -75,44 +165,4 @@ void chari_rev()
   flag = 0;
 
 }
-
-void setup()
-{
-  lcd.InitLCD();
-  attachInterrupt(0,chari_fwd,RISING);
-  attachInterrupt(1,chari_rev,RISING);
-}
-
- 
-void loop()
-{
-
-  while(abs(chariXpos - pooriXpos-1)!= 0)
-  {lcd.clrScr();
-   lcd.drawBitmap(pooriXpos,pooriYpos,poori,pooriWidth,pooriHeight);
-  if(flag ==0)
-  {lcd.drawBitmap(chariXpos,chariYpos,revchari,chariWidth,chariHeight);
-  }
-
-  if(flag ==1)
-  {lcd.drawBitmap(chariXpos,chariYpos,chari,chariWidth,chariHeight);
-  }
-
- 
-  lcd.update();
-  }
-
-
-lcd.clrScr();
-lcd.drawBitmap(0,0,gameover,84,48);
-lcd.update();
-delay(3000);
-chariXpos = 0;                                                     
-chariYpos  = 10;
-pooriXpos = 20;
-pooriYpos = 10;
-
-
-}
-
 
