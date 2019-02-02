@@ -1,7 +1,7 @@
 
 Files details :
 
-<B> chari_final.bmp and poori_final.bmp and revchari_final.bmp</B> are the <B>BITMAP IMAGES<?B> that  <B>"I"</B> designed in MS paint by <B>"MYSELF"</B>. (And I am so proud of me for making them.)
+<B> chari_final.bmp and poori_final.bmp and revchari_final.bmp</B> are the <B>BITMAP IMAGES</B> that  <B>"I"</B> designed in MS paint by <B>"MYSELF"</B>. (And I am so proud of me for making them.)
 
 <B>ChariAndPooriUnoSketch</B> contains the <B> ChariAndPooriUnoSketch.ino</B> file which is the main ARDUINO SKETCH. (Targeted for Uno R3);
 
