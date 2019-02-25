@@ -24,7 +24,6 @@
 
 
 
-
 #include <Wire.h>
 #include <LiquidCrystal.h> 
 
@@ -42,7 +41,9 @@ int RTCAddress = 0x68;                           // RTC module(slave) address. I
 #define year_reg 0x06
 
 
-int minv,secv,hourv,datev,monthv,yearv,daybufv;                                       // Variables declared for use in code.
+int minv,secv,hourv,datev,monthv,yearv,daybufv,flag = 0,t24,buf =0;                                       // Variables declared for use in code.
+int* flagpoint= &flag;
+int* t24point = &t24;
 String dayv;
 
 
@@ -52,6 +53,7 @@ String dayv;
 int dectobcd(int x);
 int bcdtodec(int x);
 int hour_dec(int x);
+void set_hours_format(int x,String y);
 void set_hours(int x);                               
 void set_minutes(int x);                            
 void set_seconds(int x);  
@@ -87,15 +89,12 @@ void setup() {
 
  // ---------- Selecting the hour format you want (read comments) --------------------
          
-//  Wire.beginTransmission(RTCAddress);                                  // Staring the I2C comm.
-//  Wire.write(hours_reg);                                                // To select the hour format.
-//  Wire.write(B00000001);                                               // change to 12 hours format by writing B01000001. (Basically Bit-6 decides it. 1 --> 12 hours && 0 --> 24 hours)
-//  Wire.endTransmission();                                               // Don't forget to end the transmission.
-//
-//
-//     set_hours(22);                               // change the "xx" to the current time. (12/24 hour format as you selected above this section)
-//     set_minutes(23);                             // change the "xx" to the current value.
-//     set_seconds(30);                             // really? Seconds too? Okay though.
+//   Set ALL the registers at the start up for better results.
+
+ //  set_hours_format(12,"PM");                          // change the "xx" to either "12" or "24"And "YY" to "AM" or "PM" or "XX"(for 24) Only those, nothing else. please.
+  //   set_hours(7);                               // change the "xx" to the current time. (12/24 hour format as you selected above)
+  //   set_minutes(37);                             // change the "xx" to the current value.
+ //    set_seconds(10);                             // really? Seconds too? Okay though.
 //
 //     set_date(24);                               // change the "xx" to the current date. 
 //     set_month(02);                             // change the "xx" to the current month.
@@ -123,12 +122,26 @@ void loop() {
      rtc_date_call();                                // Calling the fucntion which retrieves the date.
 
     Serial.print("Time :-  ");                       // Printing the time to Serial Monitor.
+
     Serial.print(hourv);
     Serial.print(":");
     Serial.print(minv);
     Serial.print(":");
     Serial.print(secv);  
-
+    if(t24 ==1)
+    {
+          if(flag ==0)
+      
+        {
+          Serial.print(" AM");
+        }
+          if(flag ==1)
+      
+        {
+          Serial.print(" PM");
+        }
+    }
+    
     Serial.print("       ");
     
     Serial.print("Date :-  ");                       // Printing the time to Serial Monitor.
@@ -148,6 +161,19 @@ void loop() {
       lcd.print(minv,DEC);
       lcd.print(":");
       lcd.print(secv,DEC);
+          if(t24 ==1)
+    {
+          if(flag ==0)
+      
+        {
+          lcd.print(" AM");
+        }
+          if(flag ==1)
+      
+        {
+          lcd.print(" PM");
+        }
+    }
 lcd.setCursor(0,1);
 
       lcd.print("Date: ");
@@ -202,8 +228,7 @@ void rtc_time_call()
   
   //For hours value.
   
-  
-  Wire.beginTransmission(RTCAddress);                                  // Begin transmission to the RTC module.
+ Wire.beginTransmission(RTCAddress);                                  // Begin transmission to the RTC module.
   Wire.write(hours_reg);                                               // Ask for the data from minutes reg.
   Wire.endTransmission();                                               // End tx. And proceed to recieve the asked byte.
   
@@ -212,8 +237,7 @@ void rtc_time_call()
   
   if(Wire.available()<=1) {                                             //If Rtc is sending data... 
     hourv = hour_dec(Wire.read());                                        // Reads the data from the minutess register  & Converting the recieved BCD value to decimal to print in future.                                                
-  }
-
+}
   
 }
 
@@ -304,10 +328,43 @@ int dectobcd(int x)
 
 int hour_dec(int x)
 {
-  x &= B00111111;
- return(bcdtodec(x));
- 
+   int p = x;
+   x &= B01000000;
+   x = x >> 6;
+
+
+   if(x ==1)                     // The format is 12 hours format. We use flag to tell it is AM or PM.
+   { *t24point = 1;
+    int n = p;
+    p &= B00100000;
+    p = p >> 5;
+
+     if(p ==1)
+     {
+      *flagpoint = 1;
+      n &= B00011111;
+      return(bcdtodec(n));
+     }
+    
+     else if(p ==0)
+     {
+      *flagpoint = 0;
+      n &= B00011111;
+      return(bcdtodec(n));
+     }
 }
+  else if(x ==0)                     // The format is 24 hours format. We directly decode the hour value.
+   { 
+      *t24point = 0;
+       p &= B00111111;
+      return(bcdtodec(p));    
+   }
+  
+
+}
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 String day_dec(int x)
 {
@@ -346,17 +403,64 @@ String day_dec(int x)
 
 
 
+void set_hours_format(int x, String y)
+{
+      if(x == 12 && y == "AM")
+      {
+          *flagpoint = 1;
+          Wire.beginTransmission(RTCAddress);                                  // Staring the I2C comm.
+          Wire.write(hours_reg);                                                 
+          Wire.write(B01000000);  
+          buf = B01000000;                                            
+          Wire.endTransmission();                                               // Don't forget to end the transmission.
+                         
+      }
+
+     else if(x == 12 && y == "PM")
+      {
+          *flagpoint = 1;
+          Wire.beginTransmission(RTCAddress);                                  // Staring the I2C comm.
+          Wire.write(hours_reg);                                                 
+          Wire.write(B01100000);  
+          buf = B01100000;                                                          
+          Wire.endTransmission();                                               // Don't forget to end the transmission.
+                         
+      }
+         else if(x == 24 && y == "XX")
+      {
+          *flagpoint =0;
+          Wire.beginTransmission(RTCAddress);                                  // Staring the I2C comm.
+          Wire.write(hours_reg);                                                 
+          Wire.write(B00000001);                                              
+          Wire.endTransmission();                                               // Don't forget to end the transmission.
+                         
+      }
+
+
+
+       
+
+}
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
 void set_hours(int x)
 {
-      if(x >= 0 && x <= 23)
-      {
-        int hr = dectobcd(x);
+     
+       int hr = dectobcd(x);
+               if(flag ==1)
+        {
+            hr = hr |buf;
+        }
           Wire.beginTransmission(RTCAddress);                                  // Staring the I2C comm.
           Wire.write(hours_reg);                                                 
           Wire.write(hr);                                              
           Wire.endTransmission();                                               // Don't forget to end the transmission.
-                         
-      }
+
+
+    
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -474,6 +578,3 @@ void set_day(int x)
  * 
  * 
  */
-
-
-
