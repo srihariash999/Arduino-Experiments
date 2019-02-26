@@ -8,6 +8,30 @@
  * 
  * 
  * 
+ * 
+ * Connections:      DS1307 pins : SDA ---> A4 (Arduino UNo)
+ *                                 SCL ---> A5 (Arduino Uno)
+ *                                 VCC ---> 5V (Arduino Uno)
+ *                                 GND ---> GND (Arduino Uno)
+ *                                 
+ *               LCD(16x2) pins :  VSS ---> GND              
+ *                                 VCC ---> VCC
+ *                                 VEE ---> 6
+ *                                 RS  ---> 12
+ *                                 RW  ---> GND
+ *                                 E   ---> 11
+ *                                 DB4 ---> 5
+ *                                 DB5 ---> 4
+ *                                 DB6 ---> 3
+ *                                 DB7 ---> 2
+ *                                LED+ ---> VCC 
+ *                                LED- ---> GND
+ *                                 
+ *                   
+ * 
+ * 
+ * 
+ * 
  * BY - Srihari Ayapilla
  * Dated - 24-02-2019
  * email: 16bec021@smvdu.ac.in
@@ -91,8 +115,8 @@ void setup() {
          
 //   Set ALL the registers at the start up for better results.
 
- //  set_hours_format(12,"PM");                          // change the "xx" to either "12" or "24"And "YY" to "AM" or "PM" or "XX"(for 24) Only those, nothing else. please.
-  //   set_hours(7);                               // change the "xx" to the current time. (12/24 hour format as you selected above)
+   //set_hours_format(24,"XX");                          // change the "xx" to either "12" or "24"And "YY" to "AM" or "PM" or "XX"(for 24) Only those, nothing else. please.
+    // set_hours(17);                               // change the "xx" to the current time. (12/24 hour format as you selected above)
   //   set_minutes(37);                             // change the "xx" to the current value.
  //    set_seconds(10);                             // really? Seconds too? Okay though.
 //
