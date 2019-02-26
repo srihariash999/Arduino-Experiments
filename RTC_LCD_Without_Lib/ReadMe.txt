@@ -19,4 +19,17 @@
  * 
  * 
  * 
- * XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-------------------------  MAY THE FORCE BE WITH YOU !!!!!! ----------------------XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX------------  MAY THE FORCE BE WITH YOU -------------XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+
+<B> Pictures of the Working Circuit :</B>
+
+System running in 12 hour mode:
+
+<img src="https://github.com/srihariash999/Arduino-Experiments/blob/master/RTC_LCD_Without_Lib/Pictures/IMG_20190226_174747_HDR.jpg">
+
+
+
+System running in 24 hour mode:
+
+<img src="https://github.com/srihariash999/Arduino-Experiments/blob/master/RTC_LCD_Without_Lib/Pictures/IMG_20190226_174950_HDR.jpg">
