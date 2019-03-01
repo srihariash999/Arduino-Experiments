@@ -4,7 +4,7 @@
  * I wrote this as an experiment and in no way I think, is more optimised. It's more of a "Because, when you can, why not" type of (fling) thing.
  * I commented almost every line of the code for ease. If that's annoying, Sorry !!!
  * 
- * Suggestions and edits are welcome.
+ * Suggestions, improvements and edits are welcome.
  * 
  * 
  * 
@@ -115,15 +115,15 @@ void setup() {
          
 //   Set ALL the registers at the start up for better results.
 
-   //set_hours_format(24,"XX");                          // change the "xx" to either "12" or "24"And "YY" to "AM" or "PM" or "XX"(for 24) Only those, nothing else. please.
-    // set_hours(17);                               // change the "xx" to the current time. (12/24 hour format as you selected above)
-  //   set_minutes(37);                             // change the "xx" to the current value.
- //    set_seconds(10);                             // really? Seconds too? Okay though.
+//     set_hours_format(24,"XX");                          // change the "xx" to either "12" or "24"And "YY" to "AM" or "PM" or "XX"(for 24) Only those, nothing else. please.
+//     set_hours(17);                               // change the "xx" to the current time. (12/24 hour format as you selected above)
+//     set_minutes(37);                             // change the "xx" to the current value.
+//     set_seconds(10);                             // really? Seconds too? Okay though.
 //
 //     set_date(24);                               // change the "xx" to the current date. 
 //     set_month(02);                             // change the "xx" to the current month.
 //     set_year(2019);                             // change the "xxxx" to the current year.
-//       set_day(1);                                 // change the "x" to current day. (1-7). ( 1 = monday && 7 = sunday)
+//     set_day(1);                                 // change the "x" to current day. (1-7). ( 1 = monday && 7 = sunday)
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -596,9 +596,18 @@ void set_day(int x)
  * 
  * 
  * 
+ *   Hello again, I am so happy you are reading this. 
  * 
  * 
  * 
- * 
- * 
+ *   "XXXXXXXXXXXXXXXXXXXXXXX---------------XXXXXXXXXXXXXXXXXXXXXXX"   : Enclosed between these are the comments I personally really want you to read.
+ *
+ *   "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"   : These symbols seperates main blocks of code, like setup and loop. 
+ *
+ *   "-------------------------------------------------------------"   : These seperate the smaller function definitions.
+ *
+ *
+ *   "-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X-X "   : These mark the end of all functional code.
+ *
+ *
  */
