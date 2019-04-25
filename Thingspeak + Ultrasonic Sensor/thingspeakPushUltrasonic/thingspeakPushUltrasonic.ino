@@ -1,9 +1,16 @@
-#include <ThingSpeak.h>
+
 #include <ESP8266WiFi.h>
 
 
 /*
 ////////////////////////////$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$/////////////////////////////////////
+
+*IMPORTANT*
+
+Select  -- > Tools/Board/ NodeMCu 1.0 (ESp 12-E) from the menu before compiling. 
+
+
+
 
 
  --> Change the SSID, Password with your WiFi credentials.
