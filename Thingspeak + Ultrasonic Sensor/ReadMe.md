@@ -1,4 +1,4 @@
-This sketch reads the distance valur from an ultrasonic sensor and pushes the values to thingspeak channel.
+This sketch reads the distance value from an ultrasonic sensor and pushes the values to thingspeak channel.
 
 The data is graphed in the thingspeak channel automatically so you get a nice visual representation of the data colected.
 
@@ -14,7 +14,7 @@ Connections info is commented into the sketch (.ino  file), please refer !
 
 
 
-Thingspeak Setup :
+Thingspeak channel Setup :
 
 
 
