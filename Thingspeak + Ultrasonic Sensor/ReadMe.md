@@ -14,7 +14,7 @@ Connections info is commented into the sketch (.ino  file), please refer !
 
 
 
-Thingspeak channel Setup :
+--- > <B> Thingspeak channel Setup : </B>
 
 
 
