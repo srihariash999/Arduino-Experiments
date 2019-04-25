@@ -13,6 +13,17 @@ Connections info is commented into the sketch (.ino  file), please refer !
 
 
 
+-----> <B> Hardware required :</B>   NodeMCU dev Board 
+			     Ultrasonic Sensor
+	                     Arduino Uno (Optional)
+
+
+------> <B> Note : </B> The sketch (.ino file) is inside the folder " thingspeakPushUltrasonic "  above. 
+
+
+
+
+
 
 --- > <B> Thingspeak channel Setup : </B>
 
