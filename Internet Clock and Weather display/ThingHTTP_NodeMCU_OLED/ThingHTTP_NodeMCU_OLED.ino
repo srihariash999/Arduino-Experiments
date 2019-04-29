@@ -1,9 +1,10 @@
 #include <ESP8266WiFi.h>
 #include <ESP8266HTTPClient.h>
-#include <SPI.h>
 #include <Wire.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
+
+
 
 #define OLED_RESET LED_BUILTIN  //4
 Adafruit_SSD1306 display(OLED_RESET);
@@ -12,7 +13,7 @@ Adafruit_SSD1306 display(OLED_RESET);
 #error("Height incorrect, please fix Adafruit_SSD1306.h!");
 #endif
  
-const char* ssid = "Redmi4";
+const char* ssid = "Redmi4";            
 const char* password = "namaste99";
  
 void setup () {
@@ -42,9 +43,32 @@ Serial.print("Connecting..");
 }
  
 void loop() {
+
+  
  
 if (WiFi.status() == WL_CONNECTED) { //Check WiFi connection status
-        display.clearDisplay();
+
+HTTPClient http;  //Declare an object of class HTTPClient
+ 
+initialdisp();
+
+getTime();
+getDate();
+getTemp();
+getHumidity();
+
+
+delay(1000);
+
+
+ 
+}  }
+
+
+
+void initialdisp()
+{
+     display.clearDisplay();
     display.setCursor(0,0);
   display.print("Time:");
     display.setCursor(0,10);
@@ -56,8 +80,13 @@ if (WiFi.status() == WL_CONNECTED) { //Check WiFi connection status
   display.print("Humidity:");
   display.display();
  
+}
+
+
+void getTime()
+{
+  
 HTTPClient http;  //Declare an object of class HTTPClient
- 
 http.begin("http://api.thingspeak.com/apps/thinghttp/send_request?api_key=18OGDYOI5VV43ED8");  //Specify request destination
 int httpCode = http.GET();                                                                  //Send the request
  
@@ -77,7 +106,14 @@ Serial.println(samay);
 }
  
 http.end();   //Close connection
+}
 
+
+
+void getDate()
+{
+  
+HTTPClient http;  //Declare an object of class HTTPClient
 http.begin("http://api.thingspeak.com/apps/thinghttp/send_request?api_key=N5PHULW23L6CBDNT");  //Specify request destination
 int httpCode3 = http.GET();                                                                  //Send the request
  
@@ -98,9 +134,16 @@ Serial.println(date);
 }
  
 http.end();   //Close connection
+}
 
 
-http.begin(" http://api.thingspeak.com/apps/thinghttp/send_request?api_key=HS4YKJTJZ9UFNIM8");  //Specify request destination
+
+void getTemp()
+{
+  
+
+HTTPClient http;  //Declare an object of class HTTPClient
+http.begin("  http://api.thingspeak.com/apps/thinghttp/send_request?api_key=HS4YKJTJZ9UFNIM8");  //Specify request destination
 int httpCode2 = http.GET();                                                                  //Send the request
  
 if (httpCode2 > 0) { //Check the returning code
@@ -120,8 +163,14 @@ temp.trim();
 http.end();   //Close connection
 
 
+}
 
-http.begin("http://api.thingspeak.com/apps/thinghttp/send_request?api_key=POW6KDE9LB35A1A6");  //Specify request destination
+
+void getHumidity()
+{
+  
+HTTPClient http;  //Declare an object of class HTTPClient
+http.begin("  http://api.thingspeak.com/apps/thinghttp/send_request?api_key=POW6KDE9LB35A1A6");  //Specify request destination
 int httpCode1 = http.GET();                                                                  //Send the request
  
 if (httpCode1 > 0) { //Check the returning code
@@ -138,13 +187,4 @@ humidity.trim();
 }
  
 http.end();   //Close connection
-
-delay(1000);
-
-
- 
-}
- 
-
- 
 }
