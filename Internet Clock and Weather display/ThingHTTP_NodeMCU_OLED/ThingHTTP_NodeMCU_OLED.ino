@@ -58,6 +58,10 @@ getTemp();
 getHumidity();
 
 
+
+
+
+
 delay(1000);
 
 
@@ -143,7 +147,7 @@ void getTemp()
   
 
 HTTPClient http;  //Declare an object of class HTTPClient
-http.begin("  http://api.thingspeak.com/apps/thinghttp/send_request?api_key=HS4YKJTJZ9UFNIM8");  //Specify request destination
+http.begin("http://api.thingspeak.com/apps/thinghttp/send_request?api_key=HS4YKJTJZ9UFNIM8");  //Specify request destination
 int httpCode2 = http.GET();                                                                  //Send the request
  
 if (httpCode2 > 0) { //Check the returning code
@@ -170,7 +174,7 @@ void getHumidity()
 {
   
 HTTPClient http;  //Declare an object of class HTTPClient
-http.begin("  http://api.thingspeak.com/apps/thinghttp/send_request?api_key=POW6KDE9LB35A1A6");  //Specify request destination
+http.begin("http://api.thingspeak.com/apps/thinghttp/send_request?api_key=POW6KDE9LB35A1A6");  //Specify request destination
 int httpCode1 = http.GET();                                                                  //Send the request
  
 if (httpCode1 > 0) { //Check the returning code
