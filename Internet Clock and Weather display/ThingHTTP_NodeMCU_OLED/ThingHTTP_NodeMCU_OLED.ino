@@ -218,7 +218,7 @@ getTime();
 getDate();
 getTemp();
 getHumidity();
-
+getForecast();
 
 
 
@@ -244,6 +244,8 @@ void initialdisp()
   display.print("Temperature:");
     display.setCursor(0,30);
   display.print("Humidity:");
+  display.setCursor(0,40);
+  display.print("Weather:");
   display.display();
  
 }
@@ -347,6 +349,31 @@ humidity.trim();
 
   display.setCursor(55,30);
   display.print(humidity);
+  display.display();
+
+ 
+}
+ 
+http.end();   //Close connection
+}
+
+
+
+void getForecast()
+{
+  
+HTTPClient http;  //Declare an object of class HTTPClient
+http.begin("http://api.thingspeak.com/apps/thinghttp/send_request?api_key=FS0673O3WWVW69LL");  //Specify request destination
+int httpCode4 = http.GET();                                                                  //Send the request
+ 
+if (httpCode4 > 0) { //Check the returning code
+ 
+String forecast = http.getString();   //Get the request response payload
+
+forecast.trim();
+Serial.println(forecast);
+  display.setCursor(47,40);
+  display.print(forecast);
   display.display();
 
  
