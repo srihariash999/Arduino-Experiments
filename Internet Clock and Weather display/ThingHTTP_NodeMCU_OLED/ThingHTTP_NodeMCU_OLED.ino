@@ -13,8 +13,8 @@ Adafruit_SSD1306 display(OLED_RESET);
 #error("Height incorrect, please fix Adafruit_SSD1306.h!");
 #endif
  
-const char* ssid = "srihari-Lenovo-ideapad-320-15ISK";            
-const char* password = "tYTaLp7J";
+const char* ssid = "Redmi4";            
+const char* password = "namaste99";
 
 
 

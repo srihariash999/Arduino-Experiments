@@ -175,8 +175,8 @@ void loop() {
     Serial.print("-");
     Serial.print(yearv);
     Serial.print(" -- ");  
-    Serial.print(dayv);
-    Serial.println("nday");
+    Serial.println(dayv);
+
 
   lcd.setCursor(0, 0);
       lcd.print("\Time:");
