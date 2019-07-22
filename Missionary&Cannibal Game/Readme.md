@@ -1,5 +1,5 @@
 
-                     Missionary and Cannibal game using <B>vectordisplay</B> app and library 
+                     Missionary and Cannibal game using vectordisplay app and library 
                      
                      
                      
