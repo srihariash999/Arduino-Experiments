@@ -1,3 +1,4 @@
+<<<<<<< HEAD
                      Missionary and Cannibal game using <B>vectordisplay</B> app and library 
                      
                      
@@ -11,3 +12,6 @@ Hardware Requirements :  Arduino Uno (or) Arduino Nano (or) ESP12E (or) Other ES
 Software requirements :  Vectordisplay library for Arduino platform - https://github.com/arpruss/vectordisplayarduino
                          vectordisplay app for android  - https://play.google.com/store/apps/details?id=mobi.omegacentauri.vectordisplay&hl=en
                          
+=======
+ $$$$$$$$$$$   Missionary and Cannibal game using <B>vectordisplay</B> app and library $$$$$$$$$$$
+>>>>>>> 5c970db394685a8b756e26bdabef8b897abbc75f
